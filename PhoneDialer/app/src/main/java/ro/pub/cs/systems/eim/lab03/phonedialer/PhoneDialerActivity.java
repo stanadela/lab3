@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.SyncStateContract;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class PhoneDialerActivity extends AppCompatActivity {
 
@@ -56,7 +58,23 @@ public class PhoneDialerActivity extends AppCompatActivity {
         }
     }
 
+    public void onContactsClick(View view) {
+        String phoneNumber = editText.getText().toString();
+        if (phoneNumber.length() > 0) {
+            Intent intent = new Intent("ro.pub.cs.systems.eim.lab04.contactsmanager.intent.action.ContactsManagerActivity");
+            intent.putExtra("ro.pub.cs.systems.eim.lab04.contactsmanager.PHONE_NUMBER_KEY", phoneNumber);
+            startActivityForResult(intent, 1);
+        } else {
+            Toast.makeText(getApplication(), "error", Toast.LENGTH_LONG).show();
+        }
+    }
+
     public void onEndCallClick(View view) {
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

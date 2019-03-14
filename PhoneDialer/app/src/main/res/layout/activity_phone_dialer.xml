@@ -110,6 +110,13 @@
 
         <ImageButton
             android:layout_row="5"
+            android:layout_column="1"
+            android:layout_gravity="center"
+            android:src="@drawable/contacts"
+            android:onClick="onContactsClick" />
+
+        <ImageButton
+            android:layout_row="5"
             android:layout_column="2"
             android:layout_gravity="center"
             android:src="@drawable/hangup"
